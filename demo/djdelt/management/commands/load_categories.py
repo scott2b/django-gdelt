@@ -9,7 +9,7 @@ There are non-theme entries in this file not considered here
 import re
 from urllib import request
 from django.core.management.base import BaseCommand, CommandError
-from gdelt.models import PatternCategory, PatternTerm
+from djdelt.models import PatternCategory, PatternTerm
 
 SET_EVENTPATTERNS_URL = 'https://raw.githubusercontent.com/ahalterman/GKG-Themes/master/SET_EVENTPATTERNS.xml'
 
