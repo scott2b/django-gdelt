@@ -37,6 +37,7 @@ class GKGDocument(models.Model):
         (NONTEXTUALSOURCE, 'Non-textual'),
     )
     gkg_record_id = models.CharField(max_length=20, primary_key=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     date = models.DateTimeField()
     source_collection = models.IntegerField(choices=SOURCE_COLLECTION_CHOICES)
     source_common_name = models.CharField(max_length=100)
