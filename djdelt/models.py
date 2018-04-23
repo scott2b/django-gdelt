@@ -55,7 +55,7 @@ class GKGDocument(models.Model):
     tone = models.TextField(blank=True)
     dates = models.TextField(blank=True)
     gcam = models.TextField(blank=True)
-    sharing_image = models.URLField(blank=True)
+    sharing_image = models.URLField(max_length=1024, blank=True)
     quotations = models.TextField(blank=True)
     all_names = models.TextField(blank=True)
     amounts = models.TextField(blank=True)
@@ -73,7 +73,7 @@ class GKGMedia(models.Model):
         ('SOCIAL_VIDEO_EMBED', 'Social video embed'),
     )
     document = models.ForeignKey(GKGDocument, on_delete=models.CASCADE)
-    url = models.URLField()
+    url = models.URLField(max_length=1024)
     media_type = models.CharField(max_length=18)
     media_type = models.CharField(max_length=18)
 
