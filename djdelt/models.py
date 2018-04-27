@@ -39,9 +39,10 @@ class GKGDocument(models.Model):
     gkg_record_id = models.CharField(max_length=20, primary_key=True)
     created_at = models.DateTimeField(auto_now_add=True)
     date = models.DateTimeField(blank=True, null=True)
-    source_collection = models.IntegerField(choices=SOURCE_COLLECTION_CHOICES)
-    source_common_name = models.CharField(max_length=100)
-    document_identifier = models.CharField(max_length=1024)
+    source_collection = models.IntegerField(choices=SOURCE_COLLECTION_CHOICES,
+        blank=True, null=True)
+    source_common_name = models.CharField(max_length=100, blank=True)
+    document_identifier = models.CharField(max_length=1024, blank=True)
     v1counts = models.TextField(blank=True)
     v2counts = models.TextField(blank=True)
     v1themes = models.TextField(blank=True)
