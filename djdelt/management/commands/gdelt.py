@@ -31,12 +31,14 @@ class Command(BaseCommand):
             print(item)
             for k,v in item.items():
                 print('%s: %s' % (k, v))
-            try:
-                doc = GKGDocument.objects.get(gkg_record_id=item['GKGRECORDID'])
-            except GKGDocument.DoesNotExist:
+            doc = GKGDocument.objects.get(gkg_record_id=item['GKGRECORDID']).first()
+            if not doc:
                 doc = GKGDocument()
                 doc.gkg_record_id = item['GKGRECORDID']
-                dt = datetime.datetime.strptime(str(item['DATE']), '%Y%m%d%H%M%S')
+                try:
+                    dt = datetime.datetime.strptime(str(item['DATE']), '%Y%m%d%H%M%S')
+                except ValueError:
+                    dt = None
                 doc.date = dt
                 doc.source_collection = item['SourceCollectionIdentifier']
                 doc.source_common_name = item['SourceCommonName']
