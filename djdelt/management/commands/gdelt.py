@@ -31,7 +31,7 @@ class Command(BaseCommand):
             print(item)
             for k,v in item.items():
                 print('%s: %s' % (k, v))
-            doc = GKGDocument.objects.get(gkg_record_id=item['GKGRECORDID']).first()
+            doc = GKGDocument.objects.filter(gkg_record_id=item['GKGRECORDID']).first()
             if not doc:
                 doc = GKGDocument()
                 doc.gkg_record_id = item['GKGRECORDID']
