@@ -46,7 +46,7 @@ class Command(BaseCommand):
                 doc.v1themes = item['Themes'] or ''
                 doc.v2themes = item['V2Themes'] or ''
                 doc.v1locations = item['Locations'] or ''
-                doc.v2locations = item['Persons'] or ''
+                doc.v2locations = item['V2Locations'] or ''
                 doc.v1persons = item['Persons'] or ''
                 doc.v2persons = item['V2Persons'] or ''
                 doc.v1organizations = item['Organizations'] or ''
