@@ -63,6 +63,7 @@ class GKGDocument(models.Model):
     extras_xml = models.TextField(blank=True)
     html = models.TextField(blank=True)
     text = models.TextField(blank=True)
+    summary = models.TextField(blank=True)
 
     def __str__(self):
         return '%s: %s' % (self.gkg_record_id, self.document_identifier)
