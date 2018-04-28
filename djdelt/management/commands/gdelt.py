@@ -41,8 +41,8 @@ class Command(BaseCommand):
                     dt = None
                 doc.date = dt
                 doc.source_collection = item['SourceCollectionIdentifier']
-                doc.source_common_name = item['SourceCommonName']
-                doc.document_identifier = item['DocumentIdentifier']
+                doc.source_common_name = item['SourceCommonName'] or ''
+                doc.document_identifier = item['DocumentIdentifier'] or ''
                 doc.v1counts = item['Counts'] or ''
                 doc.v2counts = item['V2Counts'] or ''
                 doc.v1themes = item['Themes'] or ''
