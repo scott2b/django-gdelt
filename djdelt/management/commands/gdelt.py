@@ -62,7 +62,11 @@ class Command(BaseCommand):
                 doc.amounts = item['Amounts'] or ''
                 doc.translation_info = item['TranslationInfo'] or ''
                 doc.extras_xml = item['Extras'] or ''
-                doc.save()
+                try:
+                    doc.save()
+                except django.db.utils.DataError:
+                    print('Unable to save GKG Document: %s' % doc.gkg_record_id)
+                    continue
                 for url in item['RelatedImages'].split(';') \
                         if item['RelatedImages'] else []:
                     if url.strip():
