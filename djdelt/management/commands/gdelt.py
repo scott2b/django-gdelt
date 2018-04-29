@@ -2,7 +2,7 @@ import datetime
 import json
 import gdelt
 from django.core.management.base import BaseCommand, CommandError
-from django.db.utils import DataError:
+from django.db.utils import DataError
 from django.utils import timezone
 from djdelt.models import GKGDocument, GKGMedia
 
