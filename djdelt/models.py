@@ -64,6 +64,7 @@ class GKGDocument(models.Model):
     extras_xml = models.TextField(blank=True)
     html = models.TextField(blank=True)
     text = models.TextField(blank=True)
+    title = models.CharField(max_length=1024, blank=True)
     summary = models.TextField(blank=True)
 
     def __str__(self):
