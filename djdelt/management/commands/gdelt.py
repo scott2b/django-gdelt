@@ -2,6 +2,7 @@ import datetime
 import json
 import gdelt
 from django.core.management.base import BaseCommand, CommandError
+from django.db.utils import DataError:
 from django.utils import timezone
 from djdelt.models import GKGDocument, GKGMedia
 
@@ -28,11 +29,11 @@ class Command(BaseCommand):
         results = gd2.Search(dates, table=table, output='json', coverage=coverage)
         data = json.loads(results)
         for item in data:
-            print(item)
-            for k,v in item.items():
-                print('%s: %s' % (k, v))
             doc = GKGDocument.objects.filter(gkg_record_id=item['GKGRECORDID']).first()
-            if not doc:
+            if doc:
+                print('Skipping existing: %s' % item['GKGRECORDID'])
+            else:
+                print(item['GKGRECORDID'])
                 doc = GKGDocument()
                 doc.gkg_record_id = item['GKGRECORDID']
                 try:
@@ -64,7 +65,7 @@ class Command(BaseCommand):
                 doc.extras_xml = item['Extras'] or ''
                 try:
                     doc.save()
-                except django.db.utils.DataError:
+                except DataError:
                     print('Unable to save GKG Document: %s' % doc.gkg_record_id)
                     continue
                 for url in item['RelatedImages'].split(';') \
