@@ -57,7 +57,7 @@ class Command(BaseCommand):
                 doc.tone = item['V2Tone'] or ''
                 doc.dates = item['Dates'] or ''
                 doc.gcam = item['GCAM'] or ''
-                doc.sharing_image = item['SharingImage'] or ''
+                doc.sharing_image = item['SharingImage'][:1024] or ''
                 doc.quotations = item['Quotations'] or ''
                 doc.all_names = item['AllNames'] or ''
                 doc.amounts = item['Amounts'] or ''
@@ -73,19 +73,19 @@ class Command(BaseCommand):
                     if url.strip():
                         GKGMedia(
                             document=doc,
-                            url=url.strip(),
+                            url=url.strip()[:1024],
                             media_type='RELATED_IMAGE').save()
                 for url in item['SocialImageEmbeds'].split(';') \
                         if item['SocialImageEmbeds'] else []:
                     if url.strip():
                         GKGMedia(
                             document=doc,
-                            url=url.strip(),
+                            url=url.strip()[:1024],
                             media_type='SOCIAL_IMAGE_EMBED').save()
                 for url in item['SocialVideoEmbeds'].split(';') \
                         if item['SocialVideoEmbeds'] else []:
                     if url.strip():
                         GKGMedia(
                             document=doc,
-                            url=url.strip(),
+                            url=url.strip()[:1024],
                             media_type='SOCIAL_VIDEO_EMBED').save()
