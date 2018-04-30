@@ -57,7 +57,8 @@ class Command(BaseCommand):
                 doc.tone = item['V2Tone'] or ''
                 doc.dates = item['Dates'] or ''
                 doc.gcam = item['GCAM'] or ''
-                doc.sharing_image = item['SharingImage'][:1024] or ''
+                img = item['SharingImage'] or ''
+                doc.sharing_image = img[:1024]
                 doc.quotations = item['Quotations'] or ''
                 doc.all_names = item['AllNames'] or ''
                 doc.amounts = item['Amounts'] or ''
